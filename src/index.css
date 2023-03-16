@@ -1,13 +1,51 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* nav {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+} */
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+* {
+  font-family: "Kumbh Sans", sans-serif;
+  background: #fff;
+}
+.nav--toggler {
+  cursor: pointer;
+  z-index: 100;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.nav--menu {
+  background: #fff;
+  width: 70%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: -20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 120px;
+  padding-left: 60px;
+  transform: translateX(-120%);
+  transition: 1s ease-in;
+}
+
+.nav--active {
+  transform: translateX(0);
+}
+
+/* Toggler Icon Animation */
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-6px, 6px);
+  transition: 0.2s ease-in;
+}
+
+.toggle .line2 {
+  opacity: 0;
+}
+
+.toggle .line3 {
+  transform: rotate(45deg) translate(-4px, -4px);
+  transition: 0.2s ease-in;
 }
