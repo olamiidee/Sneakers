@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import cart from "./../images/icon-cart.svg";
 import plus from "./../images/icon-plus.svg";
 import minus from "./../images/icon-minus.svg";
@@ -12,6 +12,22 @@ import product_3_thumbnail from "./../images/image-product-3-thumbnail.jpg";
 import product_4_thumbnail from "./../images/image-product-4-thumbnail.jpg";
 
 function Main() {
+  const [count, setCount] = useState(0);
+
+  //increase counter
+  const increase = () => {
+    setCount((count) => count + 1);
+  };
+
+  //decrease counter
+  const decrease = () => {
+    if (count > 0) {
+      setCount((count) => count - 1);
+    }
+  };
+
+  const addToCart = () => {};
+
   return (
     <div className="pb-[100px] lg:pt-[150px] lg:w-[80%] lg:mx-auto">
       <div className="flex flex-col justify-center items-center w-full mx-auto lg:w-[85%] lg:space-x-24 lg:flex-row">
@@ -81,24 +97,28 @@ function Main() {
           <div className="flex flex-col items-center space-y-6 lg:flex-row lg:space-y-0 lg:space-x-8">
             <div className="flex items-center justify-center bg-[#F7F8FD] border space-x-40 px-[32px] py-[14px] rounded-md w-full lg:space-x-8 lg:w-fit">
               <img
+                onClick={decrease}
                 src={minus}
                 alt="minus"
                 className="hover:opacity-50 cursor-pointer"
               />
-              <p className="">0</p>
+              <p className="">{count}</p>
               <img
+                onClick={increase}
                 src={plus}
                 alt="plus"
                 className="hover:opacity-50 cursor-pointer"
               />
             </div>
-            <button className="bg-[#ff7d1a] hover:opacity-50 text-white px-[62px] py-[14px] rounded-md w-full lg:w-fit">
+            <button
+              onClick={addToCart}
+              className="bg-[#ff7d1a] hover:opacity-50 text-white px-[62px] py-[14px] rounded-md w-full lg:w-fit"
+            >
               Add to cart
             </button>
           </div>
         </div>
       </div>
-      <div></div>
     </div>
   );
 }

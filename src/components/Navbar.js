@@ -6,6 +6,7 @@ import cart from "./../images/icon-cart.svg";
 import avatar from "./../images/image-avatar.png";
 
 function Navbar() {
+  const [isActive, setIsActive] = useState("false");
   const [active, setActive] = useState("nav--menu");
   const [toggleIcon, setToggleIcon] = useState("nav--toggler");
   const navToggle = () => {
@@ -19,6 +20,12 @@ function Navbar() {
       ? setToggleIcon("nav--toggler toggle")
       : setToggleIcon("nav--toggler");
   };
+
+  // cart toggle
+  const cartToggle = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <div>
       <nav className="hidden lg:flex text-black justify-between items-center text-[1rem] w-[80%] lg:w-[80%] h-[100px] mx-auto  bg-white fixed left-[50%] -translate-x-[50%] border-b-2">
@@ -41,7 +48,12 @@ function Navbar() {
         </ul>
 
         <div className="flex items-center justify-end space-x-10">
-          <img src={cart} alt="" className="cursor-pointer" />
+          <img
+            src={cart}
+            onClick={cartToggle}
+            alt=""
+            className="cursor-pointer hover:scale-125"
+          />
           <img src={avatar} alt="" className="w-[30%] cursor-pointer" />
         </div>
       </nav>
@@ -58,13 +70,22 @@ function Navbar() {
             <div className="line3 w-[20px] h-[4px] m-[0.2rem] bg-[#69707D]"></div>
           </div>
           <div>
-            <img src={logo} alt="logo" className="h-[22px]" />
+            <img src={logo} alt="sneakers-logo" className="h-[22px]" />
           </div>
         </div>
         {/* cart and avatar */}
         <div className="flex items-center justify-end space-x-5 w-fit">
-          <img src={cart} alt="" className="w-[20%] cursor-pointer" />
-          <img src={avatar} alt="" className="w-[25%] cursor-pointer" />
+          <img
+            src={cart}
+            alt="cart-icon"
+            onClick={cartToggle}
+            className="w-[20%] cursor-pointer"
+          />
+          <img
+            src={avatar}
+            alt="avatar-icon"
+            className="w-[25%] cursor-pointer"
+          />
         </div>
         {/* menu list */}
         <ul className={active}>
@@ -79,6 +100,16 @@ function Navbar() {
           })}
         </ul>
       </nav>
+      {/* cart modal */}
+      <div className={isActive ? "hidden" : "block"}>
+        <div className="absolute w-[100%] top-32 lg:right-10 lg:top-20 lg:w-[300px] lg:h-[250px] py-5 shadow-2xl rounded-md text-gray-500">
+          <p className="px-6 font-bold">Cart</p>
+          <div className="border-b-2 mt-4 w-[100%]"></div>
+          <div className="flex h-[185px] flex-col items-center justify-center">
+            <p className="font-bold">Your cart is empty</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
